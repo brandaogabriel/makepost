@@ -23,8 +23,20 @@ public class UserService {
 	}
 
 	public UserDTO findById(String id) {
+		User user = getUserByIdOnDB(id);
+		return new UserDTO(user);
+	}
+
+	private User getUserByIdOnDB(String id) {
 		Optional<User> obj = this.repository.findById(id);
-		User user = obj.orElseThrow(() -> new ResourceNotFoundException("User not found"));
+		return obj.orElseThrow(() -> new ResourceNotFoundException("User not found"));
+	}
+
+	public UserDTO update(String id, UserDTO userDTO) {
+		User user = getUserByIdOnDB(id);
+		user.setName(userDTO.getName());
+		user.setEmail(userDTO.getEmail());
+		user = this.repository.save(user);
 		return new UserDTO(user);
 	}
 
@@ -33,6 +45,7 @@ public class UserService {
 		user = this.repository.save(user);
 		return new UserDTO(user);
 	}
+
 
 	public void delete(String id) {
 		findById(id);
