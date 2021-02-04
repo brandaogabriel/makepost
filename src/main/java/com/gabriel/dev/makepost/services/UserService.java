@@ -27,4 +27,10 @@ public class UserService {
 		User user = obj.orElseThrow(() -> new ResourceNotFoundException("User not found"));
 		return new UserDTO(user);
 	}
+
+	public UserDTO insert(UserDTO userDTO) {
+		User user = new User(userDTO.getEmail(), userDTO.getEmail());
+		user = this.repository.save(user);
+		return new UserDTO(user);
+	}
 }

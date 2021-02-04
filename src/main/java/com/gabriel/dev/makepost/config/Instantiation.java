@@ -18,9 +18,9 @@ public class Instantiation {
 	public void createSeed() {
 		this.userRepository.deleteAll();
 
-		User maria = new User(null, "Maria Brown", "maria@gmail.com");
-		User alex = new User(null, "Alex Green", "alex@gmail.com");
-		User bob = new User(null, "Bob Grey", "bob@gmail.com");
+		User maria = new User("Maria Brown", "maria@gmail.com");
+		User alex = new User("Alex Green", "alex@gmail.com");
+		User bob = new User("Bob Grey", "bob@gmail.com");
 
 		this.userRepository.saveAll(Arrays.asList(maria, alex, bob));
 	}
