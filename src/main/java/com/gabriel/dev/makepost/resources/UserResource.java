@@ -1,6 +1,6 @@
 package com.gabriel.dev.makepost.resources;
 
-import com.gabriel.dev.makepost.entities.User;
+import com.gabriel.dev.makepost.dtos.UserDTO;
 import com.gabriel.dev.makepost.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +18,8 @@ public class UserResource {
 	private UserService service;
 
 	@GetMapping
-	public ResponseEntity<List<User>> findAll() {
-		List<User> users = service.findAll();
-		return ResponseEntity.ok().body(users);
+	public ResponseEntity<List<UserDTO>> findAll() {
+		List<UserDTO> usersDto = service.findAll();
+		return ResponseEntity.ok().body(usersDto);
 	}
 }
