@@ -34,5 +34,8 @@ public class Instantiation {
 		Post post1 = new Post(Instant.now(), "Partiu viagem", "Vou viajar para SP, abraços!", new AuthorDTO(maria));
 		Post post2 = new Post(Instant.now(), "Bom dia", "Acordei feliz hoje", new AuthorDTO(maria));
 		this.postRepository.saveAll(Arrays.asList(post1, post2));
+
+		maria.getPosts().addAll(Arrays.asList(post1, post2));
+		this.userRepository.save(maria);
 	}
 }
