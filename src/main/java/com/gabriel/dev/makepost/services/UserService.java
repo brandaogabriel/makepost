@@ -1,6 +1,8 @@
 package com.gabriel.dev.makepost.services;
 
+import com.gabriel.dev.makepost.dtos.PostDTO;
 import com.gabriel.dev.makepost.dtos.UserDTO;
+import com.gabriel.dev.makepost.entities.Post;
 import com.gabriel.dev.makepost.entities.User;
 import com.gabriel.dev.makepost.repositories.UserRepository;
 import com.gabriel.dev.makepost.services.exceptions.ResourceNotFoundException;
@@ -49,5 +51,11 @@ public class UserService {
 	public void delete(String id) {
 		findById(id);
 		this.repository.deleteById(id);
+	}
+
+	public List<PostDTO> findPosts(String userId) {
+		User user = getUserByIdOnDB(userId);
+		List<Post> userPosts = user.getPosts();
+		return userPosts.stream().map(PostDTO::new).collect(Collectors.toList());
 	}
 }

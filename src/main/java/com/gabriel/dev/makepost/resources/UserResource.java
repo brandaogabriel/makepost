@@ -1,5 +1,6 @@
 package com.gabriel.dev.makepost.resources;
 
+import com.gabriel.dev.makepost.dtos.PostDTO;
 import com.gabriel.dev.makepost.dtos.UserDTO;
 import com.gabriel.dev.makepost.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +48,11 @@ public class UserResource {
 	public ResponseEntity<Void> delete(@PathVariable String id) {
 		this.service.delete(id);
 		return ResponseEntity.noContent().build();
+	}
+
+	@GetMapping(value = "/{id}/posts")
+	public ResponseEntity<List<PostDTO>> findPosts(@PathVariable String id) {
+		List<PostDTO> postsDto = this.service.findPosts(id);
+		return ResponseEntity.ok().body(postsDto);
 	}
 }

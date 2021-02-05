@@ -29,6 +29,10 @@ public class Post implements Serializable {
 		this.author = author;
 	}
 
+	public String getId() {
+		return id;
+	}
+
 	public Instant getDate() {
 		return date;
 	}
