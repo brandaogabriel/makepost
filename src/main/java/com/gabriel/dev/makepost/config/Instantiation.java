@@ -1,6 +1,7 @@
 package com.gabriel.dev.makepost.config;
 
 import com.gabriel.dev.makepost.dtos.AuthorDTO;
+import com.gabriel.dev.makepost.dtos.CommentDTO;
 import com.gabriel.dev.makepost.entities.Post;
 import com.gabriel.dev.makepost.entities.User;
 import com.gabriel.dev.makepost.repositories.PostRepository;
@@ -33,6 +34,14 @@ public class Instantiation {
 
 		Post post1 = new Post(Instant.now(), "Partiu viagem", "Vou viajar para SP, abraços!", new AuthorDTO(maria));
 		Post post2 = new Post(Instant.now(), "Bom dia", "Acordei feliz hoje", new AuthorDTO(maria));
+
+		CommentDTO c1 = new CommentDTO("Boa viagem mano!", Instant.now(), new AuthorDTO(alex));
+		CommentDTO c2 = new CommentDTO("Aproveite", Instant.now(), new AuthorDTO(bob));
+		CommentDTO c3 = new CommentDTO("Tenha um otimo dia!", Instant.now(), new AuthorDTO(alex));
+
+		post1.getComments().addAll(Arrays.asList(c1, c2));
+		post2.getComments().addAll(Arrays.asList(c3));
+
 		this.postRepository.saveAll(Arrays.asList(post1, post2));
 
 		maria.getPosts().addAll(Arrays.asList(post1, post2));

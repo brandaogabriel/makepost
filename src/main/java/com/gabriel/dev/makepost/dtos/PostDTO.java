@@ -4,6 +4,8 @@ import com.gabriel.dev.makepost.entities.Post;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PostDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -14,6 +16,8 @@ public class PostDTO implements Serializable {
 	private String body;
 	private AuthorDTO author;
 
+	private List<CommentDTO> comments = new ArrayList<>();
+
 	public PostDTO() {
 	}
 
@@ -23,6 +27,7 @@ public class PostDTO implements Serializable {
 		this.title = entity.getTitle();
 		this.body = entity.getBody();
 		this.author = entity.getAuthor();
+		this.comments.addAll(entity.getComments());
 	}
 
 	public String getId() {
@@ -59,5 +64,9 @@ public class PostDTO implements Serializable {
 
 	public void setAuthor(AuthorDTO author) {
 		this.author = author;
+	}
+
+	public List<CommentDTO> getComments() {
+		return comments;
 	}
 }
