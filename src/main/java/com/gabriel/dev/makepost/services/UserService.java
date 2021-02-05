@@ -45,8 +45,7 @@ public class UserService {
 		user = this.repository.save(user);
 		return new UserDTO(user);
 	}
-
-
+	
 	public void delete(String id) {
 		findById(id);
 		this.repository.deleteById(id);
